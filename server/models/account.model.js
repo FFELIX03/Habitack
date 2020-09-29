@@ -1,22 +1,26 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcrypt');
 
 // List of columns for Employee schema
 let accountSchema = new Schema({
-    _id: Number,
-    firstName: String,
-    lastName: String, 
+    firstName:{
+        type: String,
+        default: ""
+    },
+    lastName: {
+        type: String,
+        default:""
+    }, 
     password: String,
     email: String,
-    phoneNumber: String,
 },{
     collection: 'accounts'
 });
 
 //hash password
 accountSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, brypt.genSaltSync(8), null);
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 //check if valid password
