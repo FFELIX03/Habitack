@@ -19,8 +19,9 @@
  err => { console.log('There is problem while connecting database ' + err) }
  );
  
- // All the express routes for an employee
+ // All the express routes
  const peopleRoutes = require('../server/routes/person.routes');
+ const accountRoutes = require('../server/routes/account.routes');
  
  // Conver incoming data to JSON format
  app.use(bodyParser.json());
@@ -33,6 +34,7 @@
  
  // Routes Configuration
  app.use('/people', peopleRoutes);
+ app.use('/accounts',accountRoutes);
  
  // Staring our express server
  const server = app.listen(port, function () {
